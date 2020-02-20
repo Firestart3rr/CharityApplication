@@ -77,31 +77,74 @@
           Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
-          <li>
+          <li th:each="institution : ${institutions}" th:if="${institutionStat.odd}">
             <div class="col">
-              <div class="title">Fundacja "Dbam o Zdrowie"</div>
-              <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
+              <div class="title" th:text="${institution.name}"></div>
+              <div class="subtitle" th:text="${institution.description}"></div>
             </div>
 
-            <div class="col">
-              <div class="title">Fundacja "A kogo"</div>
-              <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
+            <div class="col" th:with="institution = ${institutions.get(institutionStat.index+1)}">
+              <div class="title" th:text="${institution.name}"></div>
+              <div class="subtitle" th:text="${institution.description}"></div>
             </div>
+            <br>
           </li>
 
-          <li>
-            <div class="col">
-              <div class="title">Fundacja “Dla dzieci"</div>
-              <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-            </div>
-            <div class="col">
-              <div class="title">Fundacja “Bez domu”</div>
-              <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-            </div>
+          <!--          <li th:each="institution : ${institutions}">-->
+<!--            <div class="col" th:if="${institutionStat.odd}">-->
+<!--              <div th:text="${institutionStat}"></div>-->
+<!--              <div class="title" th:text="${institution.name}"></div>-->
+<!--              <div class="subtitle" th:text="${institution.description}"></div>-->
+<!--            </div>-->
 
-          </li>
+<!--            <div class="col" th:if="${institutionStat.odd}" th:value="${institution[institutionStat.index += 1]}">-->
+<!--              <div th:text="${institutionStat}"></div>-->
+<!--              <div class="title" th:text="${institution.name}"></div>-->
+<!--              <div class="subtitle" th:text="${institution.description}"></div>-->
+<!--            </div>-->
+<!--          </li>-->
+
+<!--          <li th:if="${iStat.even}">-->
+<!--            <div class="col">-->
+<!--              <div class="title" th:text="${institution.name}"></div>-->
+<!--              <div class="subtitle" th:text="${institution.description}"></div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--              <div class="title" th:text="${institution.name}"></div>-->
+<!--              <div class="subtitle" th:text="${institution.description}"></div>-->
+<!--            </div>-->
+<!--          </li>-->
+
 
         </ul>
+
+<!--        <ul class="help&#45;&#45;slides-items">-->
+<!--          <li>-->
+<!--            <div class="col">-->
+<!--              <div class="title">Fundacja "Dbam o Zdrowie"</div>-->
+<!--              <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>-->
+<!--            </div>-->
+
+<!--            <div class="col">-->
+<!--              <div class="title">Fundacja "A kogo"</div>-->
+<!--              <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>-->
+<!--            </div>-->
+<!--          </li>-->
+
+<!--          <li>-->
+<!--            <div class="col">-->
+<!--              <div class="title">Fundacja “Dla dzieci"</div>-->
+<!--              <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <div class="title">Fundacja “Bez domu”</div>-->
+<!--              <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>-->
+<!--            </div>-->
+
+<!--          </li>-->
+
+<!--        </ul>-->
 
 
       </div>
