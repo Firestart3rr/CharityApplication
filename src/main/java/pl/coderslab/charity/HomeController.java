@@ -27,12 +27,13 @@ public class HomeController {
     }
 
     @ModelAttribute("donations")
-    public List<Donation> getAllDonations(){
+    public List<Donation> getAllDonations() {
         return donationRepository.findAll();
     }
 
     @RequestMapping({"/", ""})
     public String homeAction(Model model) {
+        model.addAttribute("sumOfDonatedBags", donationRepository.sumOfAllDonatedBags());
         return RETURN_LANDING_PAGE;
     }
 }
