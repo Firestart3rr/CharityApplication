@@ -32,11 +32,11 @@ public class DataLoader implements CommandLineRunner {
     private void loadData(){
 
         Category category = new Category();
-        category.setName("ubrania");
+        category.setName("ubrania, które nadają się do ponownego użycia");
         categoryRepository.save(category);
 
         Category category2 = new Category();
-        category2.setName("żywność");
+        category2.setName("ubrania, do wyrzucenia");
         categoryRepository.save(category2);
 
         Category category3 = new Category();
@@ -44,8 +44,12 @@ public class DataLoader implements CommandLineRunner {
         categoryRepository.save(category3);
 
         Category category4 = new Category();
-        category4.setName("środki czystości");
+        category4.setName("książki");
         categoryRepository.save(category4);
+
+        Category category5 = new Category();
+        category5.setName("inne");
+        categoryRepository.save(category5);
 
         Institution institution = new Institution();
         institution.setName("Fundacja \"Dbam o Zdrowie\"");
