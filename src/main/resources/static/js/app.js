@@ -152,9 +152,12 @@ document.addEventListener("DOMContentLoaded", function() {
     summarize(currentStep){
       let summaryTextWhat;
 
-      let categories = document.getElementsByTagName("description").text;
-      console.log(categories)
-      let institutionName = document.querySelector(".title").innerText.toString();
+      let categories = document.querySelector("#categories:checked").nextElementSibling.nextElementSibling.firstChild.textContent.toString();
+          // .nextElementSibling.nextElementSibling.firstChild.textContent.toString();
+      // let categoryDescription = document.querySelectorAll();  .attributes.prototype.nextElementSibling.nextElementSibling.firstChild.textContent.toString()
+      console.log(categories);
+
+      let institutionName = document.querySelector("#institution:checked").nextElementSibling.nextElementSibling.firstElementChild.firstChild.textContent.toString();
       console.log(institutionName)
 
 

@@ -50,11 +50,11 @@ public class DonationController {
         Donation donation = new Donation();
         model.addAttribute("donation", donation);
 
-//        Category category = new Category();
-//        model.addAttribute("category", category);
-//
-//        Institution institution = new Institution();
-//        model.addAttribute("institution", institution);
+        Category category = new Category();
+        model.addAttribute("category", category);
+
+        Institution institution = new Institution();
+        model.addAttribute("institution", institution);
 
         return SHOW_DONATION_FORM;
     }
