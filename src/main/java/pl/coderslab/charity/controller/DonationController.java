@@ -44,6 +44,13 @@ public class DonationController {
     public String showForm(Model model){
         Donation donation = new Donation();
         model.addAttribute("donation", donation);
+
+        Category category = new Category();
+        model.addAttribute("category", category);
+
+        Institution institution = new Institution();
+        model.addAttribute("institution", institution);
+
         return SHOW_DONATION_FORM;
     }
 
