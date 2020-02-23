@@ -40,23 +40,33 @@ public class DonationController {
         return institutionRepository.findAll();
     }
 
+    @ModelAttribute("donations")
+    public List<Donation> getAllDonations(){
+        return donationRepository.findAll();
+    }
+
     @GetMapping("/form")
     public String showForm(Model model){
         Donation donation = new Donation();
         model.addAttribute("donation", donation);
 
-        Category category = new Category();
-        model.addAttribute("category", category);
-
-        Institution institution = new Institution();
-        model.addAttribute("institution", institution);
+//        Category category = new Category();
+//        model.addAttribute("category", category);
+//
+//        Institution institution = new Institution();
+//        model.addAttribute("institution", institution);
 
         return SHOW_DONATION_FORM;
     }
 
     @PostMapping("/form")
-    public String showForm(Donation donation, Category category, Institution institution, BindingResult result){
+    public String saveForm(Donation donation){
         donationRepository.save(donation);
-        return "index";
+        return "redirect:/donation/form/confirmation";
+    }
+
+    @GetMapping("/form/confirmation")
+    public String showConfirmation(){
+        return "formConfirmation";
     }
 }

@@ -95,17 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
    * Switching between form steps
    */
   class FormSteps {
-    quantity;
-    categories;
-    institution;
-    pickUpDetails = {
-      street: "",
-      city: "",
-      zipCode: "",
-      date: "",
-      time: "",
-      comment: "Brak"
-    };
 
     constructor(form) {
       this.$form = form;
@@ -163,24 +152,38 @@ document.addEventListener("DOMContentLoaded", function() {
     summarize(currentStep){
       let summaryTextWhat;
 
+      let categories = document.getElementsByTagName("description").text;
+      console.log(categories)
+      let institutionName = document.querySelector(".title").innerText.toString();
+      console.log(institutionName)
+
+
+      let quantity = document.getElementById("quantity").value;
+      let street = document.getElementById("street").value;
+      let city = document.getElementById("city").value;
+      let zipCode = document.getElementById("zipCode").value;
+      let pickUpDate = document.getElementById("pickUpDate").value;
+      let pickUpTime= document.getElementById("pickUpTime").value;
+      let pickUpComment = document.getElementById("pickUpComment").value;
+
       if(this.quantity == 1){
-        summaryTextWhat = `${this.quantity} worek z kategorii: ${this.categories}`;
+        summaryTextWhat = `${quantity} worek z kategorii: ${categories}`;
       } else {
-        summaryTextWhat = `${this.quantity} worki z kategorii: ${this.categories}`;
+        summaryTextWhat = `${quantity} worki z kategorii: ${categories}`;
       }
-      let summaryTextToWhere = `Dla: ${this.institution}`;
+      let summaryTextToWhere = `Dla: ${institutionName}`;
       let summaryFirstSection = $(this.slides[currentStep + 3]).find("span.summary--text");
       let summarySecondSection = $(this.slides[currentStep + 3]).find("div.form-section--column li");
 
       summaryFirstSection.eq(0).text(summaryTextWhat);
       summaryFirstSection.eq(1).text(summaryTextToWhere);
 
-      summarySecondSection.eq(0).text(this.pickUpDetails.street);
-      summarySecondSection.eq(1).text(this.pickUpDetails.city);
-      summarySecondSection.eq(2).text(this.pickUpDetails.zipCode);
-      summarySecondSection.eq(3).text(this.pickUpDetails.date);
-      summarySecondSection.eq(4).text(this.pickUpDetails.time);
-      summarySecondSection.eq(5).text(this.pickUpDetails.comment);
+      summarySecondSection.eq(0).text(street);
+      summarySecondSection.eq(1).text(city);
+      summarySecondSection.eq(2).text(zipCode);
+      summarySecondSection.eq(3).text(pickUpDate);
+      summarySecondSection.eq(4).text(pickUpTime);
+      summarySecondSection.eq(5).text(pickUpComment);
       // summarySecondSection.eq(6).text(this.pickUpDetails.street);
     }
 
@@ -204,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
       if(this.currentStep == 5){
         this.summarize(this.currentStep);
       }

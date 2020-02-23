@@ -65,17 +65,18 @@
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="form-confirmation.html" method="post" th:object="${donation}">
+        <form action="/donate/form" method="post" th:object="${donation}">
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
-            <div class="form-group form-group--checkbox" th:each="category : ${categories}" th:object="${category}" th:field="*{id}">
+            <div class="form-group form-group--checkbox" th:each="category : ${categories}">
               <label>
                 <input
                   type="checkbox"
                   name="categories"
-                  th:value="${category.getId()}"
+                  th:value="${category.id}"
+                  id="categories"
                 />
                 <span class="checkbox"></span>
                 <span class="description" th:text="${category.getName()}"
@@ -96,7 +97,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <input type="number" th:field="*{quantity}" step="1" min="1" />
+                <input type="number" th:field="*{quantity}" step="1" min="1" id="quantity" />
               </label>
             </div>
 
@@ -114,11 +115,11 @@
 
             <div class="form-group form-group--checkbox" th:each="institution : ${institutions}">
               <label>
-                <input th:field="*{institution}" type="radio" name="organization" th:value="${institution.getId()}"/>
+                <input th:field="*{institution}" type="radio" name="organization" th:value="${institution.getId()}" id="institution"/>
                 <span class="checkbox radio"></span>
                 <span class="description">
-                  <div class="title" th:text="${institution.getName()}">Fundacja “Bez domu”</div>
-                  <div class="subtitle" th:text="${institution.getDescription()}">
+                  <div class="title" th:text="${institution.name.toString()}">Fundacja “Bez domu”</div>
+                  <div class="subtitle" th:text="${institution.description.toString()}">
                     Cel i misja: Pomoc dla osób nie posiadających miejsca
                     zamieszkania
                   </div>
@@ -140,16 +141,16 @@
               <div class="form-section--column">
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Ulica <input th:field="*{street}" type="text"/> </label>
+                  <label> Ulica <input th:value="*{street}" type="text" id="street"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Miasto <input th:field="*{city}" type="text"/> </label>
+                  <label> Miasto <input th:value="*{city}" type="text" id="city"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy <input th:field="*{zipCode}" type="text" name="postcode" />
+                    Kod pocztowy <input th:value="*{zipCode}" type="text" name="postcode" id="zipCode"/>
                   </label>
                 </div>
 
@@ -163,17 +164,17 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input th:field="*{{pickUpDate}}" type="date" name="data" /> </label>
+                  <label> Data <input th:value="*{{pickUpDate}}" type="date" name="data" id="pickUpDate"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input th:field="*{{pickUpTime}}" type="time" name="time" /> </label>
+                  <label> Godzina <input th:value="*{{pickUpTime}}" type="time" name="time" id="pickUpTime"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <textarea th:field="*{pickUpComment}" name="more_info" rows="5"></textarea>
+                    <textarea th:value="*{pickUpComment}" name="more_info" rows="5" id="pickUpComment"></textarea>
                   </label>
                 </div>
               </div>
