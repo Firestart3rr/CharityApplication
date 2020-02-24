@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Transactional
-@Repository
 public interface DonationRepository extends JpaRepository<Donation, Integer> {
 
     @Query(value = "SELECT SUM(quantity) FROM donations", nativeQuery = true)
