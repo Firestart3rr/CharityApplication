@@ -24,7 +24,9 @@ import java.util.List;
 @RequestMapping("/donation")
 public class DonationController {
 
-    private static final String SHOW_DONATION_FORM = "form";
+    private static final String RETURN_DONATION_FORM = "form";
+    private static final String RETURN_DONATION_FORM_CONFIRMATION = "formConfirmation";
+    private static final String REDIRECT_TO_CONFIRMATION_FORM = "redirect:/donation/form/confirmation";
 
     private CategoryRepository categoryRepository;
     private InstitutionRepository institutionRepository;
@@ -50,23 +52,24 @@ public class DonationController {
         Donation donation = new Donation();
         model.addAttribute("donation", donation);
 
-        Category category = new Category();
-        model.addAttribute("category", category);
-
-        Institution institution = new Institution();
-        model.addAttribute("institution", institution);
-
-        return SHOW_DONATION_FORM;
+        return RETURN_DONATION_FORM;
     }
 
     @PostMapping("/form")
     public String saveForm(Donation donation){
-        donationRepository.save(donation);
-        return "redirect:/donation/form/confirmation";
+        donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
+                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution());
+        return REDIRECT_TO_CONFIRMATION_FORM;
     }
+
+//    @PostMapping("/form")
+//    public String saveForm(Donation donation){
+//        donationRepository.save(donation);
+//        return "redirect:/donation/form/confirmation";
+//    }
 
     @GetMapping("/form/confirmation")
     public String showConfirmation(){
-        return "formConfirmation";
+        return RETURN_DONATION_FORM_CONFIRMATION;
     }
 }

@@ -65,7 +65,7 @@
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="/donate/form" method="post" th:object="${donation}">
+        <form th:action="@{/donation/form}" method="post" th:object="${donation}">
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
@@ -115,7 +115,7 @@
 
             <div class="form-group form-group--checkbox" th:each="institution : ${institutions}">
               <label>
-                <input type="radio" name="organization" th:value="${institution.getId()}" id="institution"/>
+                <input th:field="*{institution}" type="radio" name="organization" th:value="${institution.getId()}" id="institution"/>
                 <span class="checkbox radio"></span>
                 <span class="description">
                   <div class="title" th:text="${institution.name}">Fundacja “Bez domu”</div>
@@ -150,7 +150,7 @@
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy <input th:value="*{zipCode}" type="text" name="postcode" id="zipCode"/>
+                    Kod pocztowy <input th:field="*{zipCode}" type="text" name="postcode" id="zipCode"/>
                   </label>
                 </div>
 
@@ -164,17 +164,17 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input th:value="*{{pickUpDate}}" type="date" name="data" id="pickUpDate"/> </label>
+                  <label> Data <input th:field="*{{pickUpDate}}" type="date" name="data" id="pickUpDate"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input th:value="*{{pickUpTime}}" type="time" name="time" id="pickUpTime"/> </label>
+                  <label> Godzina <input th:field="*{{pickUpTime}}" type="time" name="time" id="pickUpTime"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <textarea th:value="*{pickUpComment}" name="more_info" rows="5" id="pickUpComment"></textarea>
+                    <textarea th:field="*{pickUpComment}" name="more_info" rows="5" id="pickUpComment"></textarea>
                   </label>
                 </div>
               </div>
