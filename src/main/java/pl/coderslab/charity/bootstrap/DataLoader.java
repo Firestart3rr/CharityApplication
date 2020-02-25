@@ -6,9 +6,11 @@ import org.springframework.stereotype.Component;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.repository.RoleRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,6 +22,7 @@ public class DataLoader implements CommandLineRunner {
     private final CategoryRepository categoryRepository;
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public void run(String... args) throws Exception{
@@ -103,5 +106,13 @@ public class DataLoader implements CommandLineRunner {
         donation3.setZipCode("01-234");
         donation3.setInstitution(institutionRepository.findById(1).get());
         donationRepository.save(donation3);
+
+        Role role1 = new Role();
+        role1.setName("USER");
+        roleRepository.save(role1);
+
+        Role role2 = new Role();
+        role2.setName("ADMIN");
+        roleRepository.save(role2);
     }
 }
