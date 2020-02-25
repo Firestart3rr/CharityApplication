@@ -24,11 +24,10 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email){
-//        AppUser appUser = userService.findUserByEmail(email);
+    public UserDetails loadUserByUsername(String email) {
 
-        AppUser appUser=userService.findUserByEmail(email);
-        if(appUser == null){
+        AppUser appUser = userService.findUserByEmail(email);
+        if (appUser == null) {
             throw new UsernameNotFoundException(email);
         }
 

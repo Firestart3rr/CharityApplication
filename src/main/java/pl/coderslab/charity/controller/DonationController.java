@@ -16,7 +16,6 @@ import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -38,17 +37,17 @@ public class DonationController {
     }
 
     @ModelAttribute("institutions")
-    public List<Institution> getAllInstitutions(){
+    public List<Institution> getAllInstitutions() {
         return institutionRepository.findAll();
     }
 
     @ModelAttribute("donations")
-    public List<Donation> getAllDonations(){
+    public List<Donation> getAllDonations() {
         return donationRepository.findAll();
     }
 
     @GetMapping("/form")
-    public String showForm(Model model){
+    public String showForm(Model model) {
         Donation donation = new Donation();
         model.addAttribute("donation", donation);
 
@@ -56,7 +55,7 @@ public class DonationController {
     }
 
     @PostMapping("/form")
-    public String saveForm(Donation donation){
+    public String saveForm(Donation donation) {
         donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
                 donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution());
         return REDIRECT_TO_CONFIRMATION_FORM;
@@ -69,7 +68,7 @@ public class DonationController {
 //    }
 
     @GetMapping("/form/confirmation")
-    public String showConfirmation(){
+    public String showConfirmation() {
         return RETURN_DONATION_FORM_CONFIRMATION;
     }
 }

@@ -21,14 +21,14 @@ public class RegisterController {
     private UserServiceImpl userService;
 
     @GetMapping("")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         AppUser appUser = new AppUser();
         model.addAttribute("appUser", appUser);
         return RETURN_REGISTER_FORM;
     }
 
     @PostMapping("")
-    public String addNewUserToDB(AppUser appUser){
+    public String addNewUserToDB(AppUser appUser) {
         userService.saveUser(appUser);
         return REDIRECT_TO_LANDING_PAGE;
     }

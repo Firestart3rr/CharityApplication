@@ -1,8 +1,10 @@
 package pl.coderslab.charity.service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.AppUser;
+import pl.coderslab.charity.entity.CurrentUser;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.repository.RoleRepository;
@@ -34,9 +36,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        Role userRole= roleRepository.findByName("ROLE_USER");
+        Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(appUser);
         userRepository.appendRoleToUser(appUser.getId());
+    }
+
+    public AppUser getUserFromContext() {
+        CurrentUser currentUser = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return currentUser.getAppUser();
     }
 }
