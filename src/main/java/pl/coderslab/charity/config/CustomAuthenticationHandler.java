@@ -34,7 +34,7 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
         clearAuthenticationAttributes(request);
     }
 
-    private void handle(HttpServletRequest request,
+    protected void handle(HttpServletRequest request,
                         HttpServletResponse response,
                         Authentication authentication) throws IOException {
 
@@ -51,11 +51,11 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
         boolean isUser = false;
         boolean isAdmin = false;
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        for (GrantedAuthority authority : authorities) {
-            if (authority.getAuthority().equals("ROLE_USER")) {
+        for (GrantedAuthority grantedAuthority : authorities) {
+            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
                 isUser = true;
                 break;
-            } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
                 break;
             }

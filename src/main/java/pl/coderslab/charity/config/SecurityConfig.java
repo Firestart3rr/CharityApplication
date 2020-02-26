@@ -2,6 +2,7 @@ package pl.coderslab.charity.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +17,13 @@ import pl.coderslab.charity.service.SpringDataUserDetailsService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
+    }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -27,20 +35,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationSuccessHandler AuthenticationHandler(){
+    public AuthenticationSuccessHandler AuthenticationHandler() {
         return new CustomAuthenticationHandler();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
+        http
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/donation/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/login").permitAll()
+                .antMatchers("/").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
+//                .successForwardUrl("/")
                 .successHandler(AuthenticationHandler())
                 .failureUrl("/login?error=true")
                 .and()
@@ -48,3 +59,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/");
     }
 }
+

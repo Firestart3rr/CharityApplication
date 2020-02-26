@@ -108,11 +108,11 @@ public class DataLoader implements CommandLineRunner {
         donationRepository.save(donation3);
 
         Role role1 = new Role();
-        role1.setName("USER");
+        role1.setName("ROLE_USER");
         roleRepository.save(role1);
 
         Role role2 = new Role();
-        role2.setName("ADMIN");
+        role2.setName("ROLE_ADMIN");
         roleRepository.save(role2);
     }
 }
