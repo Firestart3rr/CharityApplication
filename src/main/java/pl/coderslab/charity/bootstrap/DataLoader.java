@@ -2,15 +2,11 @@ package pl.coderslab.charity.bootstrap;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import pl.coderslab.charity.entity.Category;
-import pl.coderslab.charity.entity.Donation;
-import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.entity.Role;
-import pl.coderslab.charity.repository.CategoryRepository;
-import pl.coderslab.charity.repository.DonationRepository;
-import pl.coderslab.charity.repository.InstitutionRepository;
-import pl.coderslab.charity.repository.RoleRepository;
+import pl.coderslab.charity.entity.*;
+import pl.coderslab.charity.repository.*;
+import pl.coderslab.charity.service.UserServiceImpl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,6 +19,9 @@ public class DataLoader implements CommandLineRunner {
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
     private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
+
 
     @Override
     public void run(String... args) throws Exception{
@@ -114,5 +113,21 @@ public class DataLoader implements CommandLineRunner {
         Role role2 = new Role();
         role2.setName("ROLE_ADMIN");
         roleRepository.save(role2);
+
+        AppUser appUser = new AppUser();
+        appUser.setEmail("kuba.wziatka@gmail.com");
+        appUser.setPassword("asdf");
+        appUser.setRepassword("asdf");
+        userRepository.save(appUser);
+        userService.saveUser(appUser);
+
+
+        AppUser appUser2 = new AppUser();
+        appUser2.setEmail("qwerty@asd.com");
+        appUser2.setPassword("zxc");
+        appUser2.setRepassword("zxc");
+        userRepository.save(appUser2);
+        userService.saveAdmin(appUser2);
+
     }
 }

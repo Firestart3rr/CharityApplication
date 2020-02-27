@@ -6,4 +6,6 @@ public interface UserService {
     AppUser findUserByEmail(String email);
 
     void saveUser(AppUser appUser);
+
+    void saveAdmin(AppUser appUser);
 }

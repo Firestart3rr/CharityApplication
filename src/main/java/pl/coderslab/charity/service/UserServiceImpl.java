@@ -36,6 +36,14 @@ public class UserServiceImpl implements UserService {
         userRepository.save(appUser);
     }
 
+    @Override
+    public void saveAdmin(AppUser appUser) {
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        Role userRole = roleRepository.findByName("ROLE_ADMIN");
+        appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(appUser);
+    }
+
     public AppUser getUserFromContext() {
         CurrentUser currentUser = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return currentUser.getAppUser();
