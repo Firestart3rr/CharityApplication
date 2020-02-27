@@ -18,7 +18,7 @@ import java.util.Collection;
 
 public class CustomAuthenticationHandler implements AuthenticationSuccessHandler {
 
-    private static final String RETURN_USER_MAIN_PAGE = "/user";
+    private static final String RETURN_USER_MAIN_PAGE = "/userIndex";
     private static final String RETURN_ADMIN_MAIN_PAGE = "/admin";
 
     protected Log logger = LogFactory.getLog(this.getClass());
