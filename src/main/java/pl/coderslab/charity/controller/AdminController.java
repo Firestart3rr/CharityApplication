@@ -17,11 +17,11 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@Secured("ROLE_USER")
-@RequestMapping("/userIndex")
-public class UserController {
+@Secured("ROLE_ADMIN")
+@RequestMapping("/admin")
+public class AdminController {
 
-    private static final String RETURN_USER_INDEX_PAGE = "userIndex";
+    private static final String RETURN_ADMIN_INDEX_PAGE = "adminIndex";
 
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
@@ -37,13 +37,8 @@ public class UserController {
     }
 
     @GetMapping("")
-    public String showUserIndexPage(Model model) {
-//        CurrentUser currentUser = new CurrentUser();
-        AppUser appUser = new AppUser();
+    public String showAdminIndexPage(Model model) {
         model.addAttribute("sumOfDonatedBags", donationRepository.sumOfAllDonatedBags());
-//        model.addAttribute("appUser", appUser);
-        return RETURN_USER_INDEX_PAGE;
+        return RETURN_ADMIN_INDEX_PAGE;
     }
-
-
 }
