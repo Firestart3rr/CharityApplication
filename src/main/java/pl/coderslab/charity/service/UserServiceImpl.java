@@ -1,5 +1,6 @@
 package pl.coderslab.charity.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import pl.coderslab.charity.repository.RoleRepository;
 import java.util.Arrays;
 import java.util.HashSet;
 
-
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,12 +21,6 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                           BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
 
     @Override
     public AppUser findUserByEmail(String email) {
@@ -39,7 +34,6 @@ public class UserServiceImpl implements UserService {
         Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(appUser);
-        userRepository.appendRoleToUser(appUser.getId());
     }
 
     public AppUser getUserFromContext() {
