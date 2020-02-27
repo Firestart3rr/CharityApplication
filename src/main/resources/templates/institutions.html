@@ -43,8 +43,8 @@
             </div>
 
             <div>
-              <a th:href="@{/institution/edit}" class="btn btn--small btn--without-border">Edytuj instytucję</a>
-              <a th:href="@{/institution/delete}" class="btn btn--small btn--without-border">Usuń instytucję</a>
+              <a th:href="@{'/institution/edit/' + ${institution.id}}" class="btn btn--small btn--without-border">Edytuj instytucję</a>
+              <a th:href="@{'/institution/delete/' +${institution.id}}" class="btn btn--small btn--without-border">Usuń instytucję</a>
             </div>
             <br>
           </li>

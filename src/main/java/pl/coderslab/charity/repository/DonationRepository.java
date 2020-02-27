@@ -22,4 +22,8 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
             "VALUES (:city, :pick_up_comment, :pick_up_date, :pick_up_time, :quantity, :street, :zip_code, :institution_id)", nativeQuery = true)
     void saveDonation(@Param("city") String city, @Param("pick_up_comment") String pickUpCommnent, @Param("pick_up_date") LocalDate pickUpDate, @Param("pick_up_time") LocalTime pickUpTime,
                       @Param("quantity") Integer quantity, @Param("street") String street, @Param("zip_code") String zipCode, @Param("institution_id") Institution institution);
+
+    @Modifying
+    @Query(value = "DELETE FROM donations WHERE institution_id = :institutionId", nativeQuery = true)
+    void detachDonationWithInstitutionFromInstitutions(@Param("institutionId") Integer id);
 }
