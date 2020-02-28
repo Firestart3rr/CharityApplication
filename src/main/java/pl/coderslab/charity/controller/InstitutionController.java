@@ -20,8 +20,8 @@ import java.util.List;
 @RequestMapping("/institution")
 public class InstitutionController {
 
-    private static final String RETURN_INSTITUTION_LIST = "institutions";
-    private static final String RETURN_INSTITUTION_FORM = "institutionAdd";
+    private static final String RETURN_INSTITUTION_LIST = "institution/institutions";
+    private static final String RETURN_INSTITUTION_FORM = "institution/institutionAdd";
     private static final String REDIRECT_TO_INSTITUTION_FORM = "redirect:/institution/add";
     private static final String REDIRECT_TO_INSTITUTION_LIST = "redirect:/institution/list";
 
