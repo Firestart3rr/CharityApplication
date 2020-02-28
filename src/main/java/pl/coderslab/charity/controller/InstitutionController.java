@@ -34,20 +34,20 @@ public class InstitutionController {
     }
 
     @GetMapping("/list")
-    public String showInstitutions(){
+    public String showInstitutions() {
         return RETURN_INSTITUTION_LIST;
     }
 
     @GetMapping("/add")
-    public String addInstitution(Model model){
+    public String addInstitution(Model model) {
         Institution institution = new Institution();
         model.addAttribute("institution", institution);
         return RETURN_INSTITUTION_FORM;
     }
 
     @PostMapping("/add")
-    public String addInstitution(@Valid Institution institution, BindingResult result){
-        if(result.hasErrors()){
+    public String addInstitution(@Valid Institution institution, BindingResult result) {
+        if (result.hasErrors()) {
             return RETURN_INSTITUTION_FORM;
         }
         institutionRepository.save(institution);
@@ -55,14 +55,14 @@ public class InstitutionController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editInstitution(Model model, @PathVariable Integer id){
+    public String editInstitution(Model model, @PathVariable Integer id) {
         model.addAttribute("institution", institutionRepository.findById(id));
         return RETURN_INSTITUTION_FORM;
     }
 
     @PostMapping("/edit/{id}")
-    public String editInstitution(@Valid Institution institution, BindingResult result){
-        if(result.hasErrors()){
+    public String editInstitution(@Valid Institution institution, BindingResult result) {
+        if (result.hasErrors()) {
             return RETURN_INSTITUTION_FORM;
         }
         institutionRepository.save(institution);
@@ -70,8 +70,8 @@ public class InstitutionController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delInstitution(@ModelAttribute Institution institution, @ModelAttribute Donation donation){
-        if(donation.getInstitution() != institution){
+    public String delInstitution(@ModelAttribute Institution institution, @ModelAttribute Donation donation) {
+        if (donation.getInstitution() != institution) {
             donationRepository.detachDonationWithInstitutionFromInstitutions(institution.getId());
             institutionRepository.delete(institution);
         } else {

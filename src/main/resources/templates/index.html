@@ -83,7 +83,7 @@
               <div class="subtitle" th:text="${institution.description}"></div>
             </div>
 
-            <div class="col" th:with="institution = ${institutions.get(institutionStat.index+1)}">
+            <div class="col" th:if="${institutions.size() > (institutionStat.index + 1)}" th:with="institution = ${institutions.get(institutionStat.index+1)}">
               <div class="title" th:text="${institution.name}"></div>
               <div class="subtitle" th:text="${institution.description}"></div>
             </div>

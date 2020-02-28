@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        //TODO hashowanie powtorzonego hasla, wydzielic pojedyncza metode
         Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(appUser);

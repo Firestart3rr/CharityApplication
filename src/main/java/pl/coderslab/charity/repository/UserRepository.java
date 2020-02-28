@@ -20,6 +20,6 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     void appendRoleToUser(@Param("app_user_id") int id);
 
     @Modifying
-    @Query(value = "SELECT * FROM app_user JOIN role ON app_user.id = role.id WHERE role.id = 2", nativeQuery = true)
+    @Query(value = "SELECT * FROM app_user JOIN user_role ON app_user.id = user_role.app_user_id WHERE role_id = 2;", nativeQuery = true)
     List<AppUser> selectAdmins();
 }

@@ -2,8 +2,10 @@ package pl.coderslab.charity.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Getter
@@ -15,13 +17,21 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank
     private String password;
 
     @Transient
     private String repassword;
+
+    @NotBlank
+    private String firstname;
+
+    @NotBlank
+    private String lastname;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

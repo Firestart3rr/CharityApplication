@@ -118,6 +118,8 @@ public class DataLoader implements CommandLineRunner {
         appUser.setEmail("kuba.wziatka@gmail.com");
         appUser.setPassword("asdf");
         appUser.setRepassword("asdf");
+        appUser.setFirstname("Jan");
+        appUser.setLastname("Kowalski");
         userRepository.save(appUser);
         userService.saveUser(appUser);
 
@@ -126,6 +128,8 @@ public class DataLoader implements CommandLineRunner {
         appUser2.setEmail("qwerty@asd.com");
         appUser2.setPassword("zxc");
         appUser2.setRepassword("zxc");
+        appUser2.setFirstname("John");
+        appUser2.setLastname("Smith");
         userRepository.save(appUser2);
         userService.saveAdmin(appUser2);
 
