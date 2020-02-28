@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import pl.coderslab.charity.entity.AppUser;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -17,4 +18,8 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     @Modifying
     @Query(value = "INSERT INTO user_role(app_user_id, role_id) VALUES(:app_user_id, 1)", nativeQuery = true)
     void appendRoleToUser(@Param("app_user_id") int id);
+
+    @Modifying
+    @Query(value = "SELECT * FROM app_user JOIN role ON app_user.id = role.id WHERE role.id = 2", nativeQuery = true)
+    List<AppUser> selectAdmins();
 }

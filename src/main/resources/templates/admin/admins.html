@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+  </head>
+  <body>
+
+<div th:replace="fragments/adminHeader :: nav">
+
+</div>
+
+
+    <section id="help" class="help">
+      <h2>Komu pomagamy?</h2>
+
+      <!-- SLIDE 1 -->
+      <div class="help--slides active" data-id="1">
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+          Możesz sprawdzić czym się zajmują.</p>
+
+        <div class="col">
+
+          <ul class="nav--actions">
+            <li><a th:href="@{/admin}" class="btn btn--small btn--highlighted">Powrót do strony głównej</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul class="nav--actions">
+            <li><a th:href="@{/admin/add}" class="btn btn--small btn--without-border">Dodaj nowego administratora</a></li>
+          </ul>
+        </div>
+
+
+        <ul class="help--slides-items">
+          <li th:each="admin : ${admins}">
+            <div class="col">
+              <div class="title" th:text="${admin.email}"></div>
+              <div class="subtitle" th:text="${admin.password}"></div>
+            </div>
+
+            <div>
+              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn--small btn--without-border">Edytuj administratora</a>
+              <a th:href="@{'/admin/delete/' +${admin.id}}" class="btn btn--small btn--without-border">Usuń administratora</a>
+            </div>
+            <br>
+          </li>
+
+        </ul>
+      </div>
+
+    </section>
+
+<div th:replace="fragments/footer :: footer">
+
+</div>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/static/js/app.js}"></script>
+  </body>
+</html>

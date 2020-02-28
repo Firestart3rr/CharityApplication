@@ -12,6 +12,8 @@ import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.repository.RoleRepository;
+import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.List;
 
@@ -21,10 +23,12 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private static final String RETURN_ADMIN_INDEX_PAGE = "adminIndex";
+    private static final String RETURN_ADMIN_LIST = "admin/admins";
+    private static final String RETURN_ADMIN_INDEX_PAGE = "admin/adminIndex";
 
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
+    private final UserRepository userRepository;
 
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions() {
@@ -36,9 +40,19 @@ public class AdminController {
         return donationRepository.findAll();
     }
 
+    @ModelAttribute("admins")
+    public List<AppUser> getAllAdmins(){
+        return userRepository.selectAdmins();
+    }
+
     @GetMapping("")
     public String showAdminIndexPage(Model model) {
         model.addAttribute("sumOfDonatedBags", donationRepository.sumOfAllDonatedBags());
         return RETURN_ADMIN_INDEX_PAGE;
+    }
+
+    @GetMapping("/list")
+    public String getListOfAdmins(){
+        return RETURN_ADMIN_LIST;
     }
 }
