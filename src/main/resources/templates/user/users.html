@@ -15,7 +15,7 @@
 
 
     <section id="help" class="help">
-      <h2>Nasi administratorzy</h2>
+      <h2>Użytkownicy naszego serwisu</h2>
 
       <!-- SLIDE 1 -->
       <div class="help--slides active" data-id="1">
@@ -25,28 +25,22 @@
           usunąć już istniejącego lub edytować jego dane</p>
 
         <div class="col">
-
           <ul class="nav--actions">
             <li><a th:href="@{/admin}" class="btn btn--small btn--highlighted">Powrót do strony głównej</a></li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="nav--actions">
-            <li><a th:href="@{/admin/add}" class="btn btn--small btn--without-border">Dodaj nowego administratora</a></li>
           </ul>
         </div>
 
 
         <ul class="help--slides-items">
-          <li th:each="admin : ${admins}">
+          <li th:each="user : ${users}">
             <div class="col">
-              <div class="title" th:text="${admin.firstname} + ' ' + ${admin.lastname}"></div>
-              <div class="subtitle" th:text="${admin.email}"></div>
+              <div class="title" th:text="${user.firstname} + ' ' + ${user.lastname}"></div>
+              <div class="subtitle" th:text="${user.email}"></div>
             </div>
 
             <div>
-              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn--small btn--without-border">Edytuj administratora</a>
-              <a th:href="@{'/admin/delete/' +${admin.id}}" class="btn btn--small btn--without-border">Usuń administratora</a>
+<!--              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Edytuj administratora</a>-->
+              <a th:href="@{'/admin/delete/' +${user.id}}" class="btn btn--small btn--without-border">Usuń użytkownika</a>
             </div>
             <br>
           </li>

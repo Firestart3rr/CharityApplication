@@ -14,7 +14,6 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
-import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.service.UserServiceImpl;
 
@@ -32,6 +31,7 @@ public class AdminController {
     private static final String RETURN_ADMIN_INDEX_PAGE = "admin/adminIndex";
     private static final String REDIRECT_TO_ADMIN_LIST = "redirect:/admin/list";
     private static final String REDIRECT_TO_ADMIN_INDEX_PAGE = "redirect:/admin";
+    private static final String RETURN_USER_LIST = "user/users";
 
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
@@ -53,6 +53,11 @@ public class AdminController {
         return userRepository.selectAdmins();
     }
 
+    @ModelAttribute("users")
+    public List<AppUser> getAllUsers(){
+        return userRepository.selectUsers();
+    }
+
     @GetMapping("")
     public String showAdminIndexPage(Model model) {
         model.addAttribute("sumOfDonatedBags", donationRepository.sumOfAllDonatedBags());
@@ -60,7 +65,7 @@ public class AdminController {
     }
 
     @GetMapping("/list")
-    public String getListOfAdmins() {
+    public String showAllAdmins() {
         return RETURN_ADMIN_LIST;
     }
 
@@ -99,5 +104,10 @@ public class AdminController {
     public String deleteAdmin(@ModelAttribute AppUser appUser, @ModelAttribute Role role) {
         userRepository.delete(appUser);
         return REDIRECT_TO_ADMIN_LIST;
+    }
+
+    @GetMapping("/user/list")
+    public String showAllUsers() {
+        return RETURN_USER_LIST;
     }
 }

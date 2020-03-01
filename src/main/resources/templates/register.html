@@ -19,6 +19,12 @@
       <h2>Załóż konto</h2>
       <form th:object="${appUser}" method="post">
         <div class="form-group">
+          <input th:field="*{firstname}" type="text" name="firstname" placeholder="Imię" />
+        </div>
+        <div class="form-group">
+          <input th:field="*{lastname}" type="text" name="lastname" placeholder="Nazwisko" />
+        </div>
+        <div class="form-group">
           <input th:field="*{email}" type="email" name="email" placeholder="Email" />
         </div>
         <div class="form-group">

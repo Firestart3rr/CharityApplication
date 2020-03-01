@@ -33,6 +33,8 @@ public class AppUser {
     @NotBlank
     private String lastname;
 
+    private boolean enabled = true;
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "app_user_id"),
