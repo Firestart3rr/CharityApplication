@@ -38,7 +38,7 @@
             </div>
 
             <div>
-              <a th:href="@{'/admin/user/changeStatus/' + ${user.id}}" class="btn btn--small btn--without-border" id="blockButton" th:name="${user.isEnabled()}">Odblokuj użytkownika</a>
+              <a th:href="@{'/admin/user/changeStatus/' + ${user.id}}" class="btn btn--small btn--without-border" id="blockButton" th:text="${user.isEnabled()} ? 'Odblokuj użytkownika' : 'Zablokuj użytkownika'">Zablokuj użytkownika</a>
               <a th:href="@{'/admin/user/delete/' +${user.id}}" class="btn btn--small btn--without-border">Usuń użytkownika</a>
             </div>
             <br>

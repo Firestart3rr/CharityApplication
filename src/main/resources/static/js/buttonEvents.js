@@ -26,6 +26,19 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    let checkIfEnabled = document.getElementById("blockButton").name
+
+    function addDescriptionToLink(checkIfEnabled){
+        if(checkIfEnabled){
+            document.getElementById("blockButton").innerText="Zablokuj użytkownika"
+        } else if(!checkIfEnabled){
+            document.getElementById("blockButton").innerText="Odblokuj użytkownika"
+        }
+    }
+
+
+
     document.getElementById("blockButton").onclick=function(){
         let buttonTitle = document.getElementById("blockButton").innerText
         // document.getElementById("blockButton").innerText("Odblokuj");
