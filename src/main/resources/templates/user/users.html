@@ -9,10 +9,9 @@
   </head>
   <body>
 
-<div th:replace="fragments/adminHeader :: nav">
-
-</div>
-
+  <section>
+      <div th:replace="fragments/adminHeader :: nav"></div>
+  </section>
 
     <section id="help" class="help">
       <h2>Użytkownicy naszego serwisu</h2>
@@ -39,8 +38,8 @@
             </div>
 
             <div>
-<!--              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Edytuj administratora</a>-->
-              <a th:href="@{'/admin/delete/' +${user.id}}" class="btn btn--small btn--without-border">Usuń użytkownika</a>
+              <a th:href="@{'/admin/user/changeStatus/' + ${user.id}}" class="btn btn--small btn--without-border">Zablokuj użytkownika</a>
+              <a th:href="@{'/admin/user/delete/' +${user.id}}" class="btn btn--small btn--without-border">Usuń użytkownika</a>
             </div>
             <br>
           </li>

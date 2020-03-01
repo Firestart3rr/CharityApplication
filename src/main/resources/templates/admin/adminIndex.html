@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<div th:replace="fragments/adminHeader :: header">
-
-</div>
+<section>
+    <div th:replace="fragments/adminHeader :: header"></div>
+</section>
 
 <section id="stats" class="stats">
     <div class="container container--85">
@@ -86,7 +86,8 @@
                     <div class="subtitle" th:text="${institution.description}"></div>
                 </div>
 
-                <div class="col" th:if="${institutions.size() > (institutionStat.index + 1)}" th:with="institution = ${institutions.get(institutionStat.index+1)}">
+                <div class="col" th:if="${institutions.size() > (institutionStat.index + 1)}"
+                     th:with="institution = ${institutions.get(institutionStat.index+1)}">
                     <div class="title" th:text="${institution.name}"></div>
                     <div class="subtitle" th:text="${institution.description}"></div>
                 </div>

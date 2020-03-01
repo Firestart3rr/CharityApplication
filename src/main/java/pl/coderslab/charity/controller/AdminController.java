@@ -32,6 +32,7 @@ public class AdminController {
     private static final String REDIRECT_TO_ADMIN_LIST = "redirect:/admin/list";
     private static final String REDIRECT_TO_ADMIN_INDEX_PAGE = "redirect:/admin";
     private static final String RETURN_USER_LIST = "user/users";
+    private static final String REDIRECT_TO_USER_LIST = "redirect:/admin/user/list";
 
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
@@ -110,4 +111,22 @@ public class AdminController {
     public String showAllUsers() {
         return RETURN_USER_LIST;
     }
+
+    @GetMapping("/user/changeStatus/{id}")
+    public String changeUserStatus(@PathVariable Integer id){
+        AppUser appUser = userRepository.findById(id).get();
+        if(appUser.isEnabled()){
+            userRepository.blockUser(id);
+        } else if (!appUser.isEnabled()){
+            userRepository.unblockUser(id);
+        }
+        return RETURN_USER_LIST;
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@ModelAttribute AppUser appUser){
+        userRepository.delete(appUser);
+        return REDIRECT_TO_USER_LIST;
+    }
+
 }
