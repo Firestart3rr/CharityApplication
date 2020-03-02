@@ -51,7 +51,7 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String showUserData(Model model, @PathVariable Integer id){
-        model.addAttribute("appUser", userRepository.findById(userService.getUserFromContext().getId()));
+        model.addAttribute("appUser", userRepository.findById(userService.getUserFromContext().getId()) );
         return RETURN_USER_PROFILE;
     }
 

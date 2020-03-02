@@ -17,19 +17,19 @@
     <h2>Szczegóły twojego profilu</h2>
     <form>
         <!-- SLIDE 1 -->
-        <div class="form-section form-section--columns">
+        <div class="form-section form-section--columns" th:object="${appUser}">
             <div class="form-section--column">
                 <h4>Dane użytkownika</h4>
                 <div class="form-group form-group--inline">
-                    <label> Imię <input th:placeholder="${#authentication.getPrincipal().getAppUser().getFirstname()}" type="text" id="name"/> </label>
+                    <label> Imię <input th:placeholder="${appUser.get().firstname}" type="text" id="name"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                    <label> Nazwisko <input th:placeholder="${#authentication.getPrincipal().getAppUser().getLastname()}" type="text" id="lastname"/> </label>
+                    <label> Nazwisko <input th:placeholder="${appUser.get().lastname}" type="text" id="lastname"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                    <label> Email <input th:placeholder="${#authentication.getPrincipal().getAppUser().getEmail()}" type="email" id="email"/> </label>
+                    <label> Email <input th:placeholder="${appUser.get().email}" type="email" id="email"/> </label>
                 </div>
 
             </div>
