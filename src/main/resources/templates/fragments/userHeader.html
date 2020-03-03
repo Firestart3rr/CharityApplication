@@ -11,7 +11,7 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user" sec:authorize="isAuthenticated()">
-                Witaj <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+                Witaj <span th:text ="${#authentication.getPrincipal().getAppUser().getFirstname()}"></span>
                 <ul class="dropdown">
                     <li><a th:href="@{'/userIndex/profile/' + ${#authentication.getPrincipal().getAppUser().getId()}}">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
@@ -21,7 +21,7 @@
         </ul>
 
         <ul>
-            <li><a th:href="@{/}" class="btn btn--without-border active">Start</a></li>
+            <li><a th:href="@{/userIndex}" class="btn btn--without-border active">Start</a></li>
             <li><a href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="#about-us" class="btn btn--without-border">O nas</a></li>
             <li><a href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
