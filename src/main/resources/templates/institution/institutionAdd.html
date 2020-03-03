@@ -27,7 +27,7 @@
 
             <div class="form-group form-group--inline">
                 <label> Opis <input th:field="*{description}" type="text" id="description"/> </label>
-                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">name error</p>
+                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description error</p>
 
             </div>
 

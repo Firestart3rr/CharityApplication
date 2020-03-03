@@ -98,6 +98,7 @@
               <label>
                 Liczba 60l worków:
                 <input type="number" th:field="*{quantity}" step="1" min="1" id="quantity" />
+                <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">quantity error</p>
               </label>
             </div>
 
@@ -142,15 +143,18 @@
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
                   <label> Ulica <input th:field="*{street}" type="text" id="street"/> </label>
+                  <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}">street error</p>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label> Miasto <input th:field="*{city}" type="text" id="city"/> </label>
+                  <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city error</p>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Kod pocztowy <input th:field="*{zipCode}" type="text" name="postcode" id="zipCode"/>
+                    <p th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}">zipCode error</p>
                   </label>
                 </div>
 

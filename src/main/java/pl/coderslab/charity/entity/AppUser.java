@@ -17,11 +17,11 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "podaj email")
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "podaj haslo")
     private String password;
 
     @Transient
@@ -29,10 +29,10 @@ public class AppUser {
     @Transient
     private String oldpassword;
 
-    @NotBlank
+    @NotBlank(message = "podaj imie")
     private String firstname;
 
-    @NotBlank
+    @NotBlank(message = "podaj nazwisko")
     private String lastname;
 
     private boolean enabled = true;

@@ -16,9 +16,9 @@ public class Institution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "podaj nazwe")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "podaj opis")
     private String description;
 }

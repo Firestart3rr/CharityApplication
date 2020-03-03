@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public void saveUser(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         appUser.setRepassword(passwordEncoder.encode(appUser.getRepassword()));
-        appUser.setOldpassword(passwordEncoder.encode(appUser.getOldpassword()));
+//        appUser.setOldpassword(passwordEncoder.encode(appUser.getOldpassword()));
         //TODO hashowanie powtorzonego hasla, wydzielic pojedyncza metode
         Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
