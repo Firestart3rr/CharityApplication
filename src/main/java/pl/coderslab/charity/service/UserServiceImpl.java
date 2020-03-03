@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        appUser.setRepassword(passwordEncoder.encode(appUser.getRepassword()));
+        appUser.setOldpassword(passwordEncoder.encode(appUser.getOldpassword()));
         //TODO hashowanie powtorzonego hasla, wydzielic pojedyncza metode
         Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
@@ -48,5 +50,14 @@ public class UserServiceImpl implements UserService {
     public AppUser getUserFromContext() {
         CurrentUser currentUser = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return currentUser.getAppUser();
+    }
+
+    @Override
+    public boolean checkIfValidOldPassword(final AppUser appUser){
+        //pobrac haslo biorac id z appuser i nowa kwerenda pobrac haslo z bazy danych
+        String oldPasswordFromView = appUser.getOldpassword();
+        String oldPassword = userRepository.getPasswordByUserId(appUser.getId()).getPassword();
+        return passwordEncoder.matches(oldPasswordFromView, oldPassword);
+        //TODO stare haslo z bazy
     }
 }

@@ -8,4 +8,6 @@ public interface UserService {
     void saveUser(AppUser appUser);
 
     void saveAdmin(AppUser appUser);
+
+    boolean checkIfValidOldPassword(AppUser appUser);
 }

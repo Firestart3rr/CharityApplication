@@ -26,6 +26,8 @@ public class AppUser {
 
     @Transient
     private String repassword;
+    @Transient
+    private String oldpassword;
 
     @NotBlank
     private String firstname;

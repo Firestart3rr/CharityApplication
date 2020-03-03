@@ -35,4 +35,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     @Modifying
     @Query(value = "UPDATE app_user SET enabled = true WHERE id = :id", nativeQuery = true)
     void unblockUser(@Param("id") int id);
+
+    @Query(value = "SELECT * FROM app_user WHERE id = :id", nativeQuery = true)
+    AppUser getPasswordByUserId(@Param("id") int id);
 }

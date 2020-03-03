@@ -44,7 +44,11 @@
                 <div class="form-group form-group--inline">
                     <label> Powtórz hasło <input th:field="*{repassword}" type="password" id="repassword" placeholder="Powtórz Hasło"/> </label>
                     <p th:if="${#fields.hasErrors('repassword')}" th:errors="*{repassword}">repassword error</p>
-                    <span id="error" style="display:none">Password mismatch</span>
+                </div>
+
+                <div class="form-group form-group--inline">
+                    <label> Stare hasło <input th:field="*{oldpassword}" type="password" id="oldpassword" placeholder="Stare Hasło"/> </label>
+<!--                    <p th:if="${#fields.hasErrors('repassword')}" th:errors="*{repassword}">repassword error</p>-->
                 </div>
 
             </div>

@@ -118,6 +118,7 @@ public class DataLoader implements CommandLineRunner {
         appUser.setEmail("kuba.wziatka@gmail.com");
         appUser.setPassword("asdf");
         appUser.setRepassword("asdf");
+        appUser.setOldpassword("asdf");
         appUser.setFirstname("Jan");
         appUser.setLastname("Kowalski");
         userRepository.save(appUser);
