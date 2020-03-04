@@ -62,12 +62,6 @@ public class DonationController {
         return REDIRECT_TO_CONFIRMATION_FORM;
     }
 
-//    @PostMapping("/form")
-//    public String saveForm(Donation donation){
-//        donationRepository.save(donation);
-//        return "redirect:/donation/form/confirmation";
-//    }
-
     @GetMapping("/form/confirmation")
     public String showConfirmation() {
         return RETURN_DONATION_FORM_CONFIRMATION;

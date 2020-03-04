@@ -29,20 +29,10 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void saveUser(AppUser appUser) {
+    public void saveUser(AppUser appUser, String role) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         appUser.setRepassword(passwordEncoder.encode(appUser.getRepassword()));
-//        appUser.setOldpassword(passwordEncoder.encode(appUser.getOldpassword()));
-        //TODO hashowanie powtorzonego hasla, wydzielic pojedyncza metode
-        Role userRole = roleRepository.findByName("ROLE_USER");
-        appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(appUser);
-    }
-
-    @Override
-    public void saveAdmin(AppUser appUser) {
-        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        Role userRole = roleRepository.findByName("ROLE_ADMIN");
+        Role userRole = roleRepository.findByName(role);
         appUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(appUser);
     }

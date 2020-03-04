@@ -39,6 +39,9 @@ public class AdminController {
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
 
+    private final String ROLE_USER = "ROLE_USER";
+    private final String ROLE_ADMIN = "ROLE_ADMIN";
+
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions() {
         return institutionRepository.findAll();
@@ -82,7 +85,7 @@ public class AdminController {
         if (result.hasErrors()) {
             return RETURN_ADMIN_FORM;
         }
-        userService.saveAdmin(appUser);
+        userService.saveUser(appUser, ROLE_ADMIN);
         return REDIRECT_TO_ADMIN_INDEX_PAGE;
     }
 
@@ -97,7 +100,7 @@ public class AdminController {
         if (result.hasErrors()) {
             return RETURN_ADMIN_FORM;
         }
-        userService.saveAdmin(appUser);
+        userService.saveUser(appUser, ROLE_ADMIN);
         return REDIRECT_TO_ADMIN_LIST;
     }
 

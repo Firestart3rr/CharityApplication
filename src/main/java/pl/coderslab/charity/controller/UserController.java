@@ -35,6 +35,9 @@ public class UserController {
     private final UserServiceImpl userService;
     private final UserRepository userRepository;
 
+    private final String ROLE_USER = "ROLE_USER";
+    private final String ROLE_ADMIN = "ROLE_ADMIN";
+
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions() {
         return institutionRepository.findAll();
@@ -71,7 +74,7 @@ public class UserController {
         if (!userService.checkIfValidOldPassword(appUser)) {
             throw new InvalidOldPasswordException();
         }
-        userService.saveUser(appUser);
+        userService.saveUser(appUser, ROLE_USER);
         return REDIRECT_TO_USER_INDEX_PAGE;
     }
 

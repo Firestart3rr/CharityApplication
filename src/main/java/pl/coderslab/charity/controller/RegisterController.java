@@ -19,6 +19,9 @@ public class RegisterController {
 
     private UserServiceImpl userService;
 
+    private final String ROLE_USER = "ROLE_USER";
+    private final String ROLE_ADMIN = "ROLE_ADMIN";
+
     @GetMapping("")
     public String showRegistrationForm(Model model) {
         AppUser appUser = new AppUser();
@@ -28,7 +31,7 @@ public class RegisterController {
 
     @PostMapping("")
     public String addNewUserToDB(AppUser appUser) {
-        userService.saveUser(appUser);
+        userService.saveUser(appUser, ROLE_USER);
         return REDIRECT_TO_LANDING_PAGE;
     }
 }

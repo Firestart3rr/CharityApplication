@@ -2,7 +2,6 @@ package pl.coderslab.charity.bootstrap;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.coderslab.charity.entity.*;
 import pl.coderslab.charity.repository.*;
@@ -21,6 +20,9 @@ public class DataLoader implements CommandLineRunner {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
+
+    private final String ROLE_USER = "ROLE_USER";
+    private final String ROLE_ADMIN = "ROLE_ADMIN";
 
 
     @Override
@@ -122,7 +124,7 @@ public class DataLoader implements CommandLineRunner {
         appUser.setFirstname("Jan");
         appUser.setLastname("Kowalski");
         userRepository.save(appUser);
-        userService.saveUser(appUser);
+        userService.saveUser(appUser, ROLE_USER);
 
 
         AppUser appUser2 = new AppUser();
@@ -132,7 +134,7 @@ public class DataLoader implements CommandLineRunner {
         appUser2.setFirstname("John");
         appUser2.setLastname("Smith");
         userRepository.save(appUser2);
-        userService.saveAdmin(appUser2);
+        userService.saveUser(appUser2, ROLE_ADMIN);
 
     }
 }
