@@ -1,8 +1,6 @@
 package pl.coderslab.charity.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

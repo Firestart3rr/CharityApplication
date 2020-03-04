@@ -44,10 +44,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkIfValidOldPassword(final AppUser appUser){
-        //pobrac haslo biorac id z appuser i nowa kwerenda pobrac haslo z bazy danych
         String oldPasswordFromView = appUser.getOldpassword();
         String oldPassword = userRepository.getPasswordByUserId(appUser.getId()).getPassword();
         return passwordEncoder.matches(oldPasswordFromView, oldPassword);
-        //TODO stare haslo z bazy
     }
 }
