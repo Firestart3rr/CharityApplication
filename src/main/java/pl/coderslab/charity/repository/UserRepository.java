@@ -38,4 +38,6 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
 
     @Query(value = "SELECT * FROM app_user WHERE id = :id", nativeQuery = true)
     AppUser getPasswordByUserId(@Param("id") int id);
+
+    AppUser findAppUserById(Integer id);
 }

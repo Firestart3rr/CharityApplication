@@ -13,6 +13,7 @@ import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.repository.UserRepository;
+import pl.coderslab.charity.service.AdminServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -36,8 +37,8 @@ public class AdminController {
     private final InstitutionRepository institutionRepository;
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
+    private final AdminServiceImpl adminService;
 
-    private final String ROLE_USER = "ROLE_USER";
     private final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @ModelAttribute("institutions")
@@ -115,13 +116,10 @@ public class AdminController {
 
     @GetMapping("/user/changeStatus/{id}")
     public String changeUserStatus(@PathVariable Integer id){
-        AppUser appUser = userRepository.findById(id).get();
-        if(appUser.isEnabled()){
-            userRepository.blockUser(id);
-        } else if (!appUser.isEnabled()){
-            userRepository.unblockUser(id);
-        }
-        return RETURN_USER_LIST;
+//        AppUser appUser = userRepository.findById(id).get();   //TODO if do oddzielnej metody  + optional z .ifPresent()
+        AppUser appUser = userRepository.findAppUserById(id);
+        adminService.chaneStatus(appUser, id);
+        return REDIRECT_TO_USER_LIST;
     }
 
     @GetMapping("/user/delete/{id}")

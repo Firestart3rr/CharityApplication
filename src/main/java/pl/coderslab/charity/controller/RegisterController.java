@@ -3,11 +3,14 @@ package pl.coderslab.charity.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.service.UserServiceImpl;
+
+import javax.validation.Valid;
 
 @AllArgsConstructor
 @Controller
@@ -20,7 +23,6 @@ public class RegisterController {
     private UserServiceImpl userService;
 
     private final String ROLE_USER = "ROLE_USER";
-    private final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @GetMapping("")
     public String showRegistrationForm(Model model) {
@@ -30,7 +32,10 @@ public class RegisterController {
     }
 
     @PostMapping("")
-    public String addNewUserToDB(AppUser appUser) {
+    public String addNewUserToDB(@Valid AppUser appUser, BindingResult result) {
+        if(result.hasErrors()){
+            return RETURN_REGISTER_FORM;
+        }
         userService.saveUser(appUser, ROLE_USER);
         return REDIRECT_TO_LANDING_PAGE;
     }
