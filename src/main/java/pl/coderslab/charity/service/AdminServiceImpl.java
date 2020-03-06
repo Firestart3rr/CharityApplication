@@ -12,7 +12,7 @@ public class AdminServiceImpl implements AdminService{
     private final UserRepository userRepository;
 
     @Override
-    public void chaneStatus(AppUser appUser, Integer id) {
+    public void changeStatus(AppUser appUser, Integer id) {
         if(appUser.isEnabled()){
             userRepository.blockUser(id);
         } else if (!appUser.isEnabled()){

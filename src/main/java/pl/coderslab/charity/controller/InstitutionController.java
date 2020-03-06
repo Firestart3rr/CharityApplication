@@ -10,6 +10,7 @@ import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.service.InstitutionServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,6 +28,7 @@ public class InstitutionController {
 
     private final InstitutionRepository institutionRepository;
     private final DonationRepository donationRepository;
+    private final InstitutionServiceImpl institutionService;
 
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions() {
@@ -71,12 +73,7 @@ public class InstitutionController {
 
     @GetMapping("/delete/{id}")
     public String delInstitution(@ModelAttribute Institution institution, @ModelAttribute Donation donation) {
-        if (donation.getInstitution() != institution) {
-            donationRepository.detachDonationWithInstitutionFromInstitutions(institution.getId());
-            institutionRepository.delete(institution);
-        } else {
-            institutionRepository.delete(institution);
-        }
+        institutionService.deleteInstitution(institution, donation);
         return REDIRECT_TO_INSTITUTION_LIST;
     }
 }

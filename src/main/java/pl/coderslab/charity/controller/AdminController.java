@@ -116,9 +116,8 @@ public class AdminController {
 
     @GetMapping("/user/changeStatus/{id}")
     public String changeUserStatus(@PathVariable Integer id){
-//        AppUser appUser = userRepository.findById(id).get();   //TODO if do oddzielnej metody  + optional z .ifPresent()
         AppUser appUser = userRepository.findAppUserById(id);
-        adminService.chaneStatus(appUser, id);
+        adminService.changeStatus(appUser, id);
         return REDIRECT_TO_USER_LIST;
     }
 
