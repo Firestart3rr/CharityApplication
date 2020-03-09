@@ -31,6 +31,9 @@ public class Donation {
     @ManyToOne
     private Institution institution;
 
+    @ManyToOne
+    private AppUser appUser;
+
     @NotBlank(message = "podaj ulice")
     private String street;
     @NotBlank(message = "podaj miasto")

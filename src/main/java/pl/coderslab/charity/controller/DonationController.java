@@ -57,7 +57,7 @@ public class DonationController {
     @PostMapping("/form")
     public String saveForm(Donation donation) {
         donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
-                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution());
+                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), donation.getAppUser());
         return REDIRECT_TO_CONFIRMATION_FORM;
     }
 
