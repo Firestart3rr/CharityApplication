@@ -100,7 +100,7 @@ public class DataLoader implements CommandLineRunner {
         appUser2.setRepassword("zxc");
         appUser2.setFirstname("John");
         appUser2.setLastname("Smith");
-        userRepository.save(appUser2);
+        userRepository .save(appUser2);
         userService.saveUser(appUser2, ROLE_ADMIN);
 
         Donation donation = new Donation();

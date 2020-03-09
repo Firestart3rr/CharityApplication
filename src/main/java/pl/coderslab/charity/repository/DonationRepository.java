@@ -11,6 +11,7 @@ import pl.coderslab.charity.entity.Institution;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Transactional
 public interface DonationRepository extends JpaRepository<Donation, Integer> {
@@ -27,4 +28,6 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
     @Modifying
     @Query(value = "DELETE FROM donations WHERE institution_id = :institutionId", nativeQuery = true)
     void detachDonationWithInstitutionFromInstitutions(@Param("institutionId") Integer id);
+
+    List<Donation> findDonationsByAppUserId(Integer id);
 }

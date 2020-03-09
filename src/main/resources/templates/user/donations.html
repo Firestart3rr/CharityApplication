@@ -34,7 +34,7 @@
 
 
         <ul class="help--slides-items">
-          <li th:each="donation : ${donations}">
+          <li th:each="donation : ${userDonations}">
             <div class="col">
               <div class="title" th:text="${donation.city} + ' ' + ${donation.street}+ ' ' + ${donation.pickUpComment}"></div>
               <div class="subtitle" th:text="${donation.quantity} + ' worków'"></div>

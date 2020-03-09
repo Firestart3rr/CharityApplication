@@ -14,7 +14,9 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.service.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor

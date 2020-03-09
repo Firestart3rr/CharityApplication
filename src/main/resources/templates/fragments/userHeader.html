@@ -14,7 +14,7 @@
                 Witaj <span th:text ="${#authentication.getPrincipal().getAppUser().getFirstname()}"></span>
                 <ul class="dropdown">
                     <li><a th:href="@{'/userIndex/profile/' + ${#authentication.getPrincipal().getAppUser().getId()}}">Profil</a></li>
-                    <li><a th:href="@{'/userIndex/donations'}">Moje zbiórki</a></li>
+                    <li><a th:href="@{'/userIndex/donations/' + ${#authentication.getPrincipal().getAppUser().getId()}}">Moje zbiórki</a></li>
                     <li><a th:href="@{'/logout'}">Wyloguj</a></li>
                 </ul>
             </li>

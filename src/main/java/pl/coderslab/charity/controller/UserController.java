@@ -80,8 +80,10 @@ public class UserController {
     }
 
     @Secured({ROLE_USER, ROLE_ADMIN})
-    @GetMapping("/donations")
-    public String showAllUserDonations(){
+    @GetMapping("/donations/{id}")
+    public String showAllUserDonations(Model model){
+        List<Donation> userDonations = donationRepository.findDonationsByAppUserId(userService.getUserFromContext().getId());
+        model.addAttribute("userDonations", userDonations);
         return RETURN_USER_DONATIONS_LIST;
     }
 
