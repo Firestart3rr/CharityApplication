@@ -23,6 +23,7 @@ import java.util.List;
 public class DonationController {
 
     private static final String RETURN_DONATION_FORM = "form";
+    private static final String RETURN_USER_DONATION_LIST = "donation/donations";
     private static final String RETURN_DONATION_FORM_CONFIRMATION = "formConfirmation";
     private static final String REDIRECT_TO_CONFIRMATION_FORM = "redirect:/donation/form/confirmation";
 
@@ -63,5 +64,10 @@ public class DonationController {
     @GetMapping("/form/confirmation")
     public String showConfirmation() {
         return RETURN_DONATION_FORM_CONFIRMATION;
+    }
+
+    @GetMapping("/list")
+    public String showUserDonations(){
+        return RETURN_USER_DONATION_LIST;
     }
 }

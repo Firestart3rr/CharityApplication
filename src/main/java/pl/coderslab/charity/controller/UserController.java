@@ -68,7 +68,7 @@ public class UserController {
 
     @PostMapping("/edit/{id}")
     public String editUser(@Valid AppUser appUser, BindingResult result, Locale locale) {
-        if (result.hasErrors()) {
+        if (result.hasErrors()) { 
             return RETURN_USER_EDIT_FORM;
         }
         if (!userService.checkIfValidOldPassword(appUser)) {
