@@ -28,6 +28,7 @@ public class UserController {
     private static final String RETURN_USER_INDEX_PAGE = "userIndex";
     private static final String RETURN_USER_PROFILE = "user/userProfile";
     private static final String RETURN_USER_EDIT_FORM = "user/userEdit";
+    private static final String RETURN_USER_DONATIONS_LIST = "user/donations";
     private static final String REDIRECT_TO_USER_INDEX_PAGE = "redirect:/userIndex";
 
     private final DonationRepository donationRepository;
@@ -76,6 +77,12 @@ public class UserController {
         }
         userService.saveUser(appUser, ROLE_USER);
         return REDIRECT_TO_USER_INDEX_PAGE;
+    }
+
+    @Secured({ROLE_USER, ROLE_ADMIN})
+    @GetMapping("/donations")
+    public String showAllUserDonations(){
+        return RETURN_USER_DONATIONS_LIST;
     }
 
 
