@@ -112,6 +112,7 @@ public class DataLoader implements CommandLineRunner {
         donation.setStreet("Prosta 51");
         donation.setZipCode("02-222");
         donation.setInstitution(institutionRepository.findById(3).get());
+        donation.setAppUser(userRepository.findAppUserById(1));
         donationRepository.save(donation);
 
         Donation donation2 = new Donation();
@@ -135,6 +136,7 @@ public class DataLoader implements CommandLineRunner {
         donation3.setStreet("Wiejska 13");
         donation3.setZipCode("01-234");
         donation3.setInstitution(institutionRepository.findById(1).get());
+        donation3.setAppUser(userRepository.findAppUserById(2));
         donationRepository.save(donation3);
 
     }

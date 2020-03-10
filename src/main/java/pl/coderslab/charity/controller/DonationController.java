@@ -4,16 +4,16 @@ package pl.coderslab.charity.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.service.DonationService;
+import pl.coderslab.charity.service.DonationServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 import java.util.ArrayList;
@@ -28,10 +28,13 @@ public class DonationController {
     private static final String RETURN_USER_DONATION_LIST = "donation/donations";
     private static final String RETURN_DONATION_FORM_CONFIRMATION = "formConfirmation";
     private static final String REDIRECT_TO_CONFIRMATION_FORM = "redirect:/donation/form/confirmation";
+    private static final String REDIRECT_TO_LIST_OF_DONATIONS = "redirect:/donation/list";
 
     private CategoryRepository categoryRepository;
     private InstitutionRepository institutionRepository;
     private DonationRepository donationRepository;
+    private UserServiceImpl userService;
+    private DonationServiceImpl donationService;
 
     @ModelAttribute("categories")
     public List<Category> getAllCategories() {
@@ -59,7 +62,7 @@ public class DonationController {
     @PostMapping("/form")
     public String saveForm(Donation donation) {
         donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
-                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), donation.getAppUser());
+                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), userService.getUserFromContext());
         return REDIRECT_TO_CONFIRMATION_FORM;
     }
 
@@ -69,7 +72,13 @@ public class DonationController {
     }
 
     @GetMapping("/list")
-    public String showUserDonations(){
+    public String showUserDonations() {
         return RETURN_USER_DONATION_LIST;
+    }
+
+    @GetMapping("/pickUp/{id}")
+    public String checkAsPickedUp(@PathVariable Integer id){
+        donationService.checkDonationAsPickedUp(id);
+        return REDIRECT_TO_LIST_OF_DONATIONS;
     }
 }

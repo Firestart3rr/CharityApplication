@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkIfValidOldPassword(final AppUser appUser){
+    public boolean checkIfValidOldPassword(final AppUser appUser) {
         String oldPasswordFromView = appUser.getOldpassword();
         String oldPassword = userRepository.getPasswordByUserId(appUser.getId()).getPassword();
         return passwordEncoder.matches(oldPasswordFromView, oldPassword);

@@ -40,10 +40,12 @@
               <div class="subtitle" th:text="${donation.quantity} + ' worków'"></div>
             </div>
 
-<!--            <div>-->
-<!--              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Edytuj administratora</a>-->
+            <div>
+              <a th:href="@{'/donation/pickUp/' + ${donation.id}}" class="btn btn--small btn--without-border" th:text="${donation.isPickedUp() == false} ? 'Oznacz jako odebrane' : 'Dar już odebrany'"
+                 th:style="${donation.isPickedUp() == false} ? 'background-color:red;' : 'background-color:white;'">Oznacz jako odebrane</a>
+
 <!--              <a th:href="@{'/admin/delete/' +${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Usuń administratora</a>-->
-<!--            </div>-->
+            </div>
             <br>
           </li>
 

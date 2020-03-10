@@ -30,4 +30,11 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
     void detachDonationWithInstitutionFromInstitutions(@Param("institutionId") Integer id);
 
     List<Donation> findDonationsByAppUserId(Integer id);
+
+    @Modifying
+    @Query(value = "UPDATE donations SET is_picked_up = true WHERE id = :id", nativeQuery = true)
+    void checkDonationAsPickedUp(@Param("id") int id);
+
+    Donation findDonationById(Integer id);
+
 }
