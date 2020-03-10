@@ -10,6 +10,7 @@ import pl.coderslab.charity.entity.Institution;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -21,9 +22,10 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
 
     @Modifying
     @Query(value = "INSERT INTO donations(city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, app_user_id)" +
-            "VALUES (:city, :pick_up_comment, :pick_up_date, :pick_up_time, :quantity, :street, :zip_code, :institution_id, :app_user_id)", nativeQuery = true)
+            "VALUES (:city, :pick_up_comment, :pick_up_date, :pick_up_time, :quantity, :street, :zip_code, :institution_id, :app_user_id, :is_picked_up, :create_date)", nativeQuery = true)
     void saveDonation(@Param("city") String city, @Param("pick_up_comment") String pickUpCommnent, @Param("pick_up_date") LocalDate pickUpDate, @Param("pick_up_time") LocalTime pickUpTime,
-                      @Param("quantity") Integer quantity, @Param("street") String street, @Param("zip_code") String zipCode, @Param("institution_id") Institution institution, @Param("app_user_id") AppUser appUser);
+                      @Param("quantity") Integer quantity, @Param("street") String street, @Param("zip_code") String zipCode,
+                      @Param("institution_id") Institution institution, @Param("app_user_id") AppUser appUser, @Param("is_picked_up") boolean isPickedUp, @Param("create_date") LocalDateTime createDate);
 
     @Modifying
     @Query(value = "DELETE FROM donations WHERE institution_id = :institutionId", nativeQuery = true)

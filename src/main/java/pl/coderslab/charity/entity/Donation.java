@@ -47,6 +47,6 @@ public class Donation {
     private LocalTime pickUpTime;
     private String pickUpComment;
 
-    private boolean isPickedUp = false;
+    private boolean isPickedUp;
     private LocalDateTime createDate;
 }

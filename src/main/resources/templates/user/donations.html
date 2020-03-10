@@ -37,7 +37,8 @@
           <li th:each="donation : ${userDonations}">
             <div class="col">
               <div class="title" th:text="${donation.city} + ' ' + ${donation.street}+ ' ' + ${donation.pickUpComment}"></div>
-              <div class="subtitle" th:text="${donation.quantity} + ' worków'"></div>
+              <div class="subtitle" th:text="${donation.quantity} + ' worków dla instytutcji: ' + ${donation.institution.name}"></div>
+              <div class="subtitle" th:text="${donation.isPickedUp() == true} ? 'Dar został odebrany dnia: ' + ${donation.pickUpDate} : 'Dar nie został jeszcze odebrany '"></div>
             </div>
 
 <!--            <div>-->

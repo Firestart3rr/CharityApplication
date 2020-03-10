@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.AppUser;
+import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.error.InvalidOldPasswordException;
+import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.repository.UserRepository;
@@ -33,6 +35,7 @@ public class UserController {
 
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
+    private final CategoryRepository categoryRepository;
     private final UserServiceImpl userService;
     private final UserRepository userRepository;
 
@@ -47,6 +50,11 @@ public class UserController {
     @ModelAttribute("donations")
     public List<Donation> getAllDonations() {
         return donationRepository.findAll();
+    }
+
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories(){
+        return categoryRepository.findAll();
     }
 
     @GetMapping("")

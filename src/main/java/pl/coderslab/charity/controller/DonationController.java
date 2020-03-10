@@ -16,6 +16,7 @@ import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.DonationServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,8 +62,11 @@ public class DonationController {
 
     @PostMapping("/form")
     public String saveForm(Donation donation) {
-        donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
-                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), userService.getUserFromContext());
+//        donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
+//                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), userService.getUserFromContext(), donation.isPickedUp(), donation.getCreateDate());
+        donation.setAppUser(userService.getUserFromContext());
+        donation.setCreateDate(LocalDateTime.now());
+        donationRepository.save(donation);
         return REDIRECT_TO_CONFIRMATION_FORM;
     }
 
