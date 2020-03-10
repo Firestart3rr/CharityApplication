@@ -40,7 +40,6 @@ public class UserController {
     private final UserRepository userRepository;
 
     private final String ROLE_USER = "ROLE_USER";
-    private final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions() {
@@ -87,13 +86,11 @@ public class UserController {
         return REDIRECT_TO_USER_INDEX_PAGE;
     }
 
-    @Secured({ROLE_USER, ROLE_ADMIN})
     @GetMapping("/donations/{id}")
     public String showAllUserDonations(Model model){
         List<Donation> userDonations = donationRepository.findDonationsByAppUserId(userService.getUserFromContext().getId());
         model.addAttribute("userDonations", userDonations);
         return RETURN_USER_DONATIONS_LIST;
     }
-
 
 }

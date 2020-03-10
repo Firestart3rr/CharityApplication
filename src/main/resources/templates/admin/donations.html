@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+  </head>
+  <body>
+
+  <header>
+    <div th:replace="fragments/adminHeader :: nav"></div>
+  </header>
+
+    <section id="help" class="help">
+      <h2>Lista przekazanych darów</h2>
+
+      <!-- SLIDE 1 -->
+      <div class="help--slides active" data-id="1">
+        <p>Na tej stronie znajduje się lista wszystkich przekazanych przez Ciebie darów</p>
+
+        <div class="col">
+
+          <ul class="nav--actions">
+            <li><a th:href="@{/admin}" class="btn btn--small btn--highlighted">Powrót do strony głównej</a></li>
+          </ul>
+        </div>
+
+        <ul class="help--slides-items">
+          <li th:each="donation : ${userDonations}">
+            <div class="col">
+              <div class="title" th:text="${donation.city} + ' ' + ${donation.street}+ ' ' + ${donation.pickUpComment}"></div>
+              <div class="subtitle" th:text="${donation.quantity} + ' worków dla instytutcji: ' + ${donation.institution.name}"></div>
+              <div class="subtitle" th:text="${donation.isPickedUp() == true} ? 'Dar został odebrany dnia: ' + ${donation.pickUpDate} : 'Dar nie został jeszcze odebrany '"></div>
+            </div>
+
+            <div>
+              <a th:href="@{'/donation/details/' + ${donation.id}}" class="btn btn--small btn--without-border">Szczegóły daru</a>
+            </div>
+            <br>
+          </li>
+
+        </ul>
+      </div>
+
+    </section>
+
+<div th:replace="fragments/footer :: footer">
+
+</div>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+  </body>
+</html>

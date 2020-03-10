@@ -2,17 +2,16 @@ package pl.coderslab.charity.controller;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.CategoryRepository;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
-import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.DonationServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
@@ -25,7 +24,9 @@ import java.util.List;
 public class DonationController {
 
     private static final String RETURN_DONATION_FORM = "form";
-    private static final String RETURN_USER_DONATION_LIST = "donation/donations";
+    private static final String RETURN_DONATION_DETAILS = "user/userDonationDetails";
+    private static final String RETURN_ADMIN_DONATION_DETAILS = "admin/adminDonationDetails";
+    private static final String RETURN_ALL_DONATION_LIST = "donation/donations";
     private static final String RETURN_DONATION_FORM_CONFIRMATION = "formConfirmation";
     private static final String REDIRECT_TO_CONFIRMATION_FORM = "redirect:/donation/form/confirmation";
     private static final String REDIRECT_TO_LIST_OF_DONATIONS = "redirect:/donation/list";
@@ -35,6 +36,9 @@ public class DonationController {
     private DonationRepository donationRepository;
     private UserServiceImpl userService;
     private DonationServiceImpl donationService;
+
+    private final String ROLE_USER = "ROLE_USER";
+    private final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @ModelAttribute("categories")
     public List<Category> getAllCategories() {
@@ -76,12 +80,23 @@ public class DonationController {
 
     @GetMapping("/list")
     public String showUserDonations() {
-        return RETURN_USER_DONATION_LIST;
+        return RETURN_ALL_DONATION_LIST;
     }
 
     @GetMapping("/pickUp/{id}")
     public String checkAsPickedUp(@PathVariable Integer id){
         donationService.checkDonationAsPickedUp(id);
         return REDIRECT_TO_LIST_OF_DONATIONS;
+    }
+
+    @GetMapping("/details/{id}")
+    public String showDonationDetails(Model model, @PathVariable Integer id){
+        Donation donationDetails = donationRepository.findDonationById(id);
+        model.addAttribute("donationDetails", donationDetails);
+        if(userService.getUserFromContext().getRoles().equals("ROLE_USER")){
+            return RETURN_DONATION_DETAILS;
+        } else {
+            return RETURN_ADMIN_DONATION_DETAILS;
+        }
     }
 }

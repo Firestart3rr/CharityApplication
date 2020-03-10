@@ -10,10 +10,10 @@
     <nav class="container container--70" th:fragment="nav">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj Agata
+                Witaj <span th:text ="${#authentication.getPrincipal().getAppUser().getFirstname()}"></span>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
+                    <li><a th:href="@{'/admin/donations/' + ${#authentication.getPrincipal().getAppUser().getId()}}">Moje zbiórki</a></li>
                     <li><a th:href="@{/logout}">Wyloguj</a></li>
                 </ul>
             </li>
