@@ -41,10 +41,9 @@
               <div class="subtitle" th:text="${donation.isPickedUp() == true} ? 'Dar został odebrany dnia: ' + ${donation.pickUpDate} : 'Dar nie został jeszcze odebrany '"></div>
             </div>
 
-<!--            <div>-->
-<!--              <a th:href="@{'/admin/edit/' + ${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Edytuj administratora</a>-->
-<!--              <a th:href="@{'/admin/delete/' +${admin.id}}" class="btn btn&#45;&#45;small btn&#45;&#45;without-border">Usuń administratora</a>-->
-<!--            </div>-->
+            <div>
+              <a th:href="@{'/donation/details/' + ${donation.id}}" class="btn btn--small btn--without-border">Szczegóły daru</a>
+            </div>
             <br>
           </li>
 

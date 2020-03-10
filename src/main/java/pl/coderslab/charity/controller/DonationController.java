@@ -17,7 +17,6 @@ import pl.coderslab.charity.service.DonationServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
