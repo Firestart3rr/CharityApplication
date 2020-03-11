@@ -1,8 +1,8 @@
 package pl.coderslab.charity.controller;
 
 
+import antlr.StringUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +30,7 @@ public class DonationController {
     private static final String RETURN_ADMIN_DONATION_DETAILS = "admin/adminDonationDetails";
     private static final String RETURN_ALL_DONATION_LIST = "donation/donations";
     private static final String RETURN_DONATION_FORM_CONFIRMATION = "formConfirmation";
+    private static final String RETURN_NON_LOGGED_EXCEPTION = "donation/nonLoggedException";
     private static final String REDIRECT_TO_CONFIRMATION_FORM = "redirect:/donation/form/confirmation";
     private static final String REDIRECT_TO_LIST_OF_DONATIONS = "redirect:/donation/list";
 
@@ -81,6 +82,11 @@ public class DonationController {
     @GetMapping("/form/confirmation")
     public String showConfirmation() {
         return RETURN_DONATION_FORM_CONFIRMATION;
+    }
+
+    @GetMapping("/noLogged")
+    public String redirectNonLoggedUserToLoginForm(){
+        return RETURN_NON_LOGGED_EXCEPTION;
     }
 
     @GetMapping("/list")
