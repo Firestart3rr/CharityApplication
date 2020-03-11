@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,6 +41,7 @@ public class Donation {
     @NotBlank(message = "podaj miasto")
     private String city;
     @NotBlank(message = "podaj kod pocztowy")
+    @Pattern(regexp = "^\\d{2}-\\d{3}$", message = "niewłaściwy format")
     private String zipCode;
 
     @DateTimeFormat (pattern = "yyyy-MM-dd")

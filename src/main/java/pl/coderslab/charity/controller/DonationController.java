@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
@@ -15,6 +16,7 @@ import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.service.DonationServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -64,9 +66,12 @@ public class DonationController {
     }
 
     @PostMapping("/form")
-    public String saveForm(Donation donation) {
+    public String saveForm(@Valid Donation donation, BindingResult result) {
 //        donationRepository.saveDonation(donation.getCity(), donation.getPickUpComment(), donation.getPickUpDate(), donation.getPickUpTime(),
 //                donation.getQuantity(), donation.getStreet(), donation.getZipCode(), donation.getInstitution(), userService.getUserFromContext(), donation.isPickedUp(), donation.getCreateDate());
+        if(result.hasErrors()){
+            return RETURN_DONATION_FORM;
+        }
         donation.setAppUser(userService.getUserFromContext());
         donation.setCreateDate(LocalDateTime.now());
         donationRepository.save(donation);

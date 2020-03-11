@@ -84,7 +84,7 @@ public class DataLoader implements CommandLineRunner {
         roleRepository.save(role2);
 
         AppUser appUser = new AppUser();
-        appUser.setEmail("kuba.wziatka@gmail.com");
+        appUser.setEmail("user@user.com");
         appUser.setPassword("asdf");
         appUser.setRepassword("asdf");
         appUser.setOldpassword("asdf");
@@ -95,7 +95,7 @@ public class DataLoader implements CommandLineRunner {
 
 
         AppUser appUser2 = new AppUser();
-        appUser2.setEmail("qwerty@asd.com");
+        appUser2.setEmail("admin@admin.com");
         appUser2.setPassword("zxc");
         appUser2.setRepassword("zxc");
         appUser2.setFirstname("John");

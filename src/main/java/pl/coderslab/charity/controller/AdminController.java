@@ -29,6 +29,7 @@ public class AdminController {
     private static final String RETURN_ADMIN_FORM = "admin/adminAdd";
     private static final String RETURN_ADMIN_INDEX_PAGE = "admin/adminIndex";
     private static final String RETURN_ADMIN_DONATIONS_LIST = "admin/donations";
+    private static final String RETURN_ADMIN_PROFILE = "admin/adminProfile";
     private static final String REDIRECT_TO_ADMIN_LIST = "redirect:/admin/list";
     private static final String REDIRECT_TO_ADMIN_INDEX_PAGE = "redirect:/admin";
     private static final String RETURN_USER_LIST = "user/users";
@@ -133,6 +134,12 @@ public class AdminController {
         List<Donation> userDonations = donationRepository.findDonationsByAppUserId(userService.getUserFromContext().getId());
         model.addAttribute("userDonations", userDonations);
         return RETURN_ADMIN_DONATIONS_LIST;
+    }
+
+    @GetMapping("/profile/{id}")
+    public String showUserData(Model model) {
+        model.addAttribute("appUser", userRepository.findById(userService.getUserFromContext().getId()));
+        return RETURN_ADMIN_PROFILE;
     }
 
 }
