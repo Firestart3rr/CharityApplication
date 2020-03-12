@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.AppUser;
+import pl.coderslab.charity.service.EmailServiceImpl;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ public class RegisterController {
     private static final String REDIRECT_TO_LANDING_PAGE = "redirect:/";
 
     private UserServiceImpl userService;
+    private EmailServiceImpl emailService;
 
     private final String ROLE_USER = "ROLE_USER";
 
@@ -37,6 +39,7 @@ public class RegisterController {
             return RETURN_REGISTER_FORM;
         }
         userService.saveUser(appUser, ROLE_USER);
+//        emailService.sendSimpleMessage(appUser.getEmail(), "pomyslnie zalozono konto", "a to jest text");
         return REDIRECT_TO_LANDING_PAGE;
     }
 }
