@@ -8,6 +8,18 @@ Celem projektu jest stworzenie miejsca, w którym każdy będzie mógł oddać n
 - Jest wiele dostępnych rozwiązań, ale wiele z nich wymaga dodatkowego wysiłku lub nie budzą one zaufania.
 W zweryfikowane miejsca trzeba pojechać, a nie ma na to czasu lub nie ma jak tam pojechać. Natomiast kontenery pod domem lub lokalne zbiórki są niezweryfikowane i nie wiadomo czy te rzeczy faktycznie trafią do potrzebujących. 
 
+#### Uruchamianie aplikacji
+
+Domyślny adres to: localhost:8082
+
+Aby zalogować się jako administrator użyj:
+login: admin@admin.com
+hasło: zxc
+
+Aby zalogować się jako użytkownik użyj:
+login: user@user.com
+hasło: asdf
+
 ### Wykorzystane technologie
 
     Spring Boot

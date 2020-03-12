@@ -40,4 +40,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     AppUser getPasswordByUserId(@Param("id") int id);
 
     AppUser findAppUserById(Integer id);
+
+    @Query(value = "SELECT role_id FROM role JOIN user_role ON role.id = user_role.app_user_id WHERE app_user_id = :id", nativeQuery = true)
+    int pickRoleIdbyUserId(@Param("id") Integer id);
 }
