@@ -1,20 +1,16 @@
 package pl.coderslab.charity.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
-public class EmailServiceImpl implements EmailService {
+public class EmailServiceImpl {
 
-//    private final String to = "kuba.wziatka@gmail.com";
-//    private final String subject = "Wiadomość formularza kontaktowego";
+    private final JavaMailSender emailSender;
 
-    @Autowired
-    public JavaMailSender emailSender;
-
-    @Override
     public void sendSimpleMessage(String to, String subject, String text) {
 
         SimpleMailMessage message = new SimpleMailMessage();

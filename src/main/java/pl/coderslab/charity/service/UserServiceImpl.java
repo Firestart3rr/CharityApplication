@@ -48,4 +48,8 @@ public class UserServiceImpl implements UserService {
         String oldPassword = userRepository.getPasswordByUserId(appUser.getId()).getPassword();
         return passwordEncoder.matches(oldPasswordFromView, oldPassword);
     }
+
+    public void saveRegisteredUser(AppUser appUser) {
+        userRepository.save(appUser);
+    }
 }
