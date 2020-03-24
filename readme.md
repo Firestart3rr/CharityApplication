@@ -53,11 +53,11 @@ Już zaimplementowane funkcjonalności
     edycja własnego profilu,
     dodawanie darów tylko po zalogowaniu,
     przeglądanie, edycja, kasowanie przekazanych darów,
-    zaznaczenie, że dar został komuś oddany (archiwizacja).
+    zaznaczenie, że dar został komuś oddany (archiwizacja),
+    potwierdzenie aktywacji konta poprzez wiadomość przesłaną na email podany przy rejestracji.
     
     W trakcie realizacji
     
-        potwierdzenie aktywacji konta poprzez wiadomość przesłaną na email podany przy rejestracji,
         obsługa zapomnianych haseł,
         walidacja obsługi administratorów (np. brak możliwości skasowania ostatniego istniejącego administratora),
         Walidacja haseł,
